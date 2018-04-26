@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="demoservice" />
+        <module name="eureka-server" />
+        <module name="feignhystrix" />
+        <module name="migrate" />
+        <module name="policy" />
+        <module name="prpins-common" />
+        <module name="unwrt" />
+        <module name="zipkin" />
+        <module name="zuul" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cloud-common" target="1.8" />
+      <module name="common" target="1.8" />
+      <module name="commoneurekaserver" target="1.5" />
+      <module name="demoservice" target="1.8" />
+      <module name="eureka-server" target="1.8" />
+      <module name="fccb" target="1.8" />
+      <module name="fccb-common" target="1.8" />
+      <module name="feignhystrix" target="1.8" />
+      <module name="migrate" target="1.8" />
+      <module name="policy" target="1.8" />
+      <module name="prpins" target="1.8" />
+      <module name="prpins-common" target="1.8" />
+      <module name="unwrt" target="1.8" />
+      <module name="zipkin" target="1.8" />
+      <module name="zuul" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

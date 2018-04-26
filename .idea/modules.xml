@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cloud-common/cloud-common.iml" filepath="$PROJECT_DIR$/cloud-common/cloud-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-common/demoservice/demoservice.iml" filepath="$PROJECT_DIR$/cloud-common/demoservice/demoservice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-common/eureka-server/eureka-server.iml" filepath="$PROJECT_DIR$/cloud-common/eureka-server/eureka-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fccb/fccb.iml" filepath="$PROJECT_DIR$/fccb/fccb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-common/feignhystrix/feignhystrix.iml" filepath="$PROJECT_DIR$/cloud-common/feignhystrix/feignhystrix.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fccb/migrate/migrate.iml" filepath="$PROJECT_DIR$/fccb/migrate/migrate.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fccb/policy/policy.iml" filepath="$PROJECT_DIR$/fccb/policy/policy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prpins.iml" filepath="$PROJECT_DIR$/prpins.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prpins-common/prpins-common.iml" filepath="$PROJECT_DIR$/prpins-common/prpins-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/unwrt/unwrt.iml" filepath="$PROJECT_DIR$/unwrt/unwrt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-common/zipkin/zipkin.iml" filepath="$PROJECT_DIR$/cloud-common/zipkin/zipkin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-common/zuul/zuul.iml" filepath="$PROJECT_DIR$/cloud-common/zuul/zuul.iml" />
+    </modules>
+  </component>
+</project>
