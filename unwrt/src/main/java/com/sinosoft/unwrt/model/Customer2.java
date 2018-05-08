@@ -1,28 +1,25 @@
 package com.sinosoft.unwrt.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Customer2 {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+//@JsonIgnoreProperties(value = {"customer"})
+public class Customer2 implements java.io.Serializable{
+
     private Integer cid;
 
     private String first_name;
 
     private String last_name;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(updatable = false)
-    @org.hibernate.annotations.CreationTimestamp
     private Date createTime;
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     public Integer getCid() {
         return cid;
     }
@@ -47,6 +44,10 @@ public class Customer2 {
         this.last_name = last_name;
     }
 
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(updatable = false)
+    @org.hibernate.annotations.CreationTimestamp
     public Date getCreateTime() {
         return createTime;
     }
@@ -55,6 +56,9 @@ public class Customer2 {
         this.createTime = createTime;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id",nullable = false, insertable = false, updatable = false)
+    @JsonIgnore
     public Customer getCustomer() {
         return customer;
     }
@@ -63,13 +67,29 @@ public class Customer2 {
         this.customer = customer;
     }
 
-    @ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
-    @JsonIgnore
+    @OneToMany(mappedBy="customer2",cascade=CascadeType.ALL,fetch = FetchType.LAZY)
+    public List<Customer3> getCustomer3s() {
+        return Customer3s;
+    }
+
+    public void setCustomer3s(List<Customer3> customer3s) {
+        Customer3s = customer3s;
+    }
+
+
+
     private Customer customer;
 
-    @OneToMany(mappedBy="customer2",cascade=CascadeType.ALL,fetch = FetchType.LAZY)
-    @JsonManagedReference
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    private Integer id;
+
     private List<Customer3> Customer3s;
 
 

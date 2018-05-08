@@ -1,12 +1,15 @@
 package com.sinosoft.unwrt.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 //@Data
-public class Customer {
+public class Customer implements Serializable {
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -31,6 +34,9 @@ public class Customer {
         this.last_name = last_name;
     }
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(updatable = false)
+    @org.hibernate.annotations.CreationTimestamp
     public Date getCreateTime() {
         return createTime;
     }
@@ -39,6 +45,7 @@ public class Customer {
         this.createTime = createTime;
     }
 
+    @OneToMany(mappedBy="customer",cascade=CascadeType.ALL,fetch = FetchType.LAZY)
     public List<Customer2> getCustomer2s() {
         return Customer2s;
     }
@@ -47,21 +54,17 @@ public class Customer {
         Customer2s = customer2s;
     }
 
-    @Id
 
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
     private String first_name;
 
     private String last_name;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(updatable = false)
-    @org.hibernate.annotations.CreationTimestamp
+
     private Date createTime;
 
-    @OneToMany(mappedBy="customer",cascade=CascadeType.ALL,fetch = FetchType.LAZY)
+
     private List<Customer2> Customer2s;
 
 

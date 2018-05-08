@@ -1,20 +1,21 @@
 package com.sinosoft.unwrt.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Customer3 {
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+//@JsonIgnoreProperties(value = {"hibernateLazyInitializer","handler", "fieldHandler","customer2"})
+public class Customer3 implements java.io.Serializable{
+
     private Integer cid;
 
     private String first_name;
 
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     public Integer getCid() {
         return cid;
     }
@@ -39,6 +40,10 @@ public class Customer3 {
         this.last_name = last_name;
     }
 
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(updatable = false)
+    @CreationTimestamp
     public Date getCreateTime() {
         return createTime;
     }
@@ -47,8 +52,9 @@ public class Customer3 {
         this.createTime = createTime;
     }
 
-    @ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id",nullable = false, insertable = false, updatable = false)
+    @JsonIgnore
     public Customer2 getCustomer2() {
         return customer2;
     }
@@ -59,14 +65,20 @@ public class Customer3 {
 
     private String last_name;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(updatable = false)
-    @org.hibernate.annotations.CreationTimestamp
     private Date createTime;
 
-    @ManyToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name = "id")
+
+
     private Customer2 customer2;
 
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    private Integer id;
 }
