@@ -20,8 +20,7 @@ public class BaseService extends HibernateDaoSupport {
 
 
     public static ThreadLocal<String> remoteThreadLocal = new ThreadLocal<String>();
-    @Autowired
-    private FccbSaveService fccbSaveService;
+
 
     @Autowired
     public void injectSessionFactory(SessionFactory sessionFactory){
@@ -31,7 +30,7 @@ public class BaseService extends HibernateDaoSupport {
     @Transactional(rollbackFor = Exception.class)
     public Object save(Object obj) {
         Object o =  super.getHibernateTemplate().save(obj);
-        Object result = fccbSaveService.savePolicy((Customer)obj);
+        //Object result = fccbSaveService.savePolicy((Customer)obj);
 
         return o;
     }

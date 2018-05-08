@@ -1,9 +1,11 @@
 package com.sinosoft.fccb.migrate.web;
 
 
+
 import com.sinosoft.fccb.migrate.model.Customer;
 import com.sinosoft.fccb.migrate.service.MigrateService;
 import com.sinosoft.fccb.migrate.service.PrpinsService;
+import com.sinosoft.prpins.common.exception.BusinessException;
 import com.sinosoft.prpins.common.service.BaseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -47,18 +49,19 @@ public class DemoController {
 
 
     @RequestMapping("/find")
-    public   Customer find() {
+    public   List<Customer> find() throws BusinessException {
 
 //        Customer customer2 = new Customer();
 //        customer2.setFirst_name("222");
 //        migrateService.save(customer2);
 
-        //List<Customer> list = null;
-        Customer list=null;
+        List<Customer> list = null;
+        //Customer list=null;
         try {
             list = prpinsService.find();
         } catch (Exception e) {
             e.printStackTrace();
+            throw new BusinessException("我抛异常!");
         }
         //List<Customer> list = baseService.findByHql("from Customer a");
         return list;

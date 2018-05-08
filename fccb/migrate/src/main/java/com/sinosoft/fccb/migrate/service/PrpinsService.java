@@ -39,16 +39,16 @@ public class PrpinsService extends BaseService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public  Customer find() throws Exception {
-        //List<Customer> list = super.getHibernateTemplate().loadAll(Customer.class);
-        Customer customera = (Customer) this.findByHqlOne("from Customer");
+    public  List<Customer> find() throws Exception {
+        List<Customer> list = super.getHibernateTemplate().loadAll(Customer.class);
+        Customer customera = (Customer) list.get(0);
 
         customera.getCustomer2s().get(0).setFirst_name("xiugai111");
         try {
             setSth(customera);
         }catch (Exception e){
             e.printStackTrace();
-            //throw e;
+            throw e;
         }
 
 
@@ -105,15 +105,15 @@ public class PrpinsService extends BaseService {
         //System.out.println(mapper.writeValueAsString(customera2));
         //格式化/美化/优雅的输出
         //System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(customera2));
-        return customera;
+        return list;
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW,rollbackFor = Exception.class)
+    @Transactional(rollbackFor = Exception.class)
     public void setSth(Customer customera) throws Exception {
         customera.getCustomer2s().get(0).setFirst_name("xiugai999");
-        if(true){
-            throw new Exception("hhhhh=====error");
-        }
+//        if(true){
+//            throw new Exception("hhhhh=====error");
+//        }
     }
 
 

@@ -44,7 +44,7 @@ public class HibernateTxConfig {
         jpaProperties.put("hibernate.ejb.naming_strategy","org.hibernate.cfg.ImprovedNamingStrategy");
         jpaProperties.put("hibernate.jdbc.batch_size",50);
         jpaProperties.put("hibernate.dialect","org.hibernate.dialect.MySQL5Dialect");
-        jpaProperties.put("hibernate.bytecode.provider","cglib");
+        //jpaProperties.put("hibernate.bytecode.provider","cglib");
 
         return builder.dataSource(dataSource)
                 .properties(jpaProperties)

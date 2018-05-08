@@ -1,6 +1,9 @@
 package com.sinosoft.unwrt.web;
 
 
+import com.netflix.hystrix.exception.HystrixRuntimeException;
+import com.sinosoft.prpins.common.exception.BusinessException;
+import com.sinosoft.prpins.common.exception.HystrixExceptionHandler;
 import com.sinosoft.unwrt.model.Customer;
 import com.sinosoft.unwrt.remoteservice.service.FccbSaveService;
 import com.sinosoft.unwrt.service.BaseService;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Api("demo 接口")
@@ -45,13 +49,30 @@ public class DemoController {
 
     @RequestMapping("/find")
     public List<Customer> find() {
+        long startTime = System.currentTimeMillis();
         List<Customer> list = new ArrayList<Customer>();
         try {
             list = fccbSaveService.findPolicy();
+        }catch (HystrixRuntimeException e) {
+            Throwable th = e.getFallbackException().getCause().getCause();
+            if(th.getMessage().equals(HystrixExceptionHandler.TIMEOUTEXCEPTION)){
+                throw e;
+            }else if(th.getMessage().equals(HystrixExceptionHandler.BUSINESSEXCEPTION)){
+
+            }
+            long endTime = System.currentTimeMillis();
+
+            float seconds = (endTime - startTime) / 1000F;
+            System.out.println("exception"+e.getClass()+" seconds======="+seconds);
+            System.out.println(e.getFallbackException().getCause().getCause() instanceof BusinessException);
+            System.out.println(e.getFallbackException().getCause().getCause().getMessage());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             e.printStackTrace();
         }
+        long endTime = System.currentTimeMillis();
+
+        float seconds = (endTime - startTime) / 1000F;
+        System.out.println("list="+list+" seconds======="+seconds);
         return list;
 
     }
